@@ -120,7 +120,6 @@ Resources:
             ChangeSetName: pipeline-changeset
             Capabilities: CAPABILITY_NAMED_IAM
             TemplatePath: !Sub "${AppName}-BuildArtifact::${SAMOutputFile}"
-            ParameterOverrides: !Sub '{"EnvName": "${Env}"}'
           RunOrder: 1
         - Name: execute-changeset
           InputArtifacts: []
