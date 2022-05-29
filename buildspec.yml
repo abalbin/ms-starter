@@ -1,0 +1,21 @@
+version: 0.2
+env:
+  variables:
+    SAM_OUTPUT: post-saml.yaml
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+  pre_build:
+    commands:
+      - cd src/
+      - npm ci
+  build:
+    commands:
+      - echo Build started on `date`
+      - cd ..
+      - sam build --beta-features
+      - sam package --s3-bucket $S3_BUCKET --output-template-file $SAM_OUTPUT
+artifacts:
+  files:
+    - $SAM_OUTPUT
